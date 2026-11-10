@@ -8,7 +8,7 @@ import { API_KEY, DEFAULT_API, DEFAULT_MCP, SECRET_NAMES, SSH_KEY, type Account,
 import { AccountStore } from "./store.js"
 
 export const PLUGIN_ID = "oc-runpod"
-export const VERSION = "1.0.1"
+export const VERSION = "1.0.2"
 const SERVICE = "Runpod"
 const run = promisify(execFile)
 

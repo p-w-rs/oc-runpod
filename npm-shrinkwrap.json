@@ -1,12 +1,12 @@
 {
   "name": "oc-runpod",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "oc-runpod",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "license": "UNLICENSED",
       "os": [
         "darwin",
@@ -14,7 +14,7 @@
       ],
       "dependencies": {
         "jsonc-parser": "3.3.1",
-        "oc-secure-kit": "file:vendor/oc-secure-kit-1.0.1.tgz"
+        "oc-secure-kit": "file:vendor/oc-secure-kit-1.0.2.tgz"
       },
       "devDependencies": {
         "@opencode/plugin": "2.2.6",
@@ -4250,9 +4250,9 @@
       }
     },
     "node_modules/oc-secure-kit": {
-      "version": "1.0.1",
-      "resolved": "file:vendor/oc-secure-kit-1.0.1.tgz",
-      "integrity": "sha512-DTSrCdC1QuRNTJ1vhDv1MjiMl3/4cejYZizTHM7MCEkMZMSAtuOTB40V+0x8jkbKaJe4U3afHumHlaY9xoGKmw==",
+      "version": "1.0.2",
+      "resolved": "file:vendor/oc-secure-kit-1.0.2.tgz",
+      "integrity": "sha512-k4sXPtDW6Xqwl1zVth456RwMoty7P2UunNpSH6JZO5/xHBbvDyje2jiHpbvS6fUNZhHCfb5V1JVkf/4l26NXlQ==",
       "license": "UNLICENSED",
       "engines": {
         "node": ">=24"

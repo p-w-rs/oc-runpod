@@ -1,0 +1,31 @@
+[workspace]
+name = "oc-runpod"
+version = "0.1.0"
+description = "RunPod (pods, serverless, storage, SSH into pods) for OpenCode agents"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64", "linux-aarch64"]
+
+[dependencies]
+nodejs = "24.*"
+# Pinned for tests: a real OpenSSH and rsync. At runtime the agent's own ssh/rsync are used.
+openssh = "*"
+rsync = "*"
+
+[tasks]
+deps = "node scripts/deps.mjs"
+deps-update = "node scripts/deps.mjs --refresh --shrinkwrap"
+vendor-kit = "node scripts/vendor-kit.mjs"
+check = { cmd = "npm run check", depends-on = ["deps"] }
+build = { cmd = "npm run build", depends-on = ["deps"] }
+test = { cmd = "npm test", depends-on = ["check", "build"] }
+doctor = { cmd = "node scripts/doctor.mjs", depends-on = ["build"] }
+install = { cmd = "node scripts/install.mjs", depends-on = ["build", "test"] }
+install-dev = { cmd = "node scripts/install.mjs --dev", depends-on = ["build"] }
+uninstall = { cmd = "node scripts/install.mjs --uninstall", depends-on = ["deps"] }
+rollback = { cmd = "node scripts/install.mjs --rollback", depends-on = ["deps"] }
+install-status = { cmd = "node scripts/install.mjs --status", depends-on = ["deps"] }
+signin = { cmd = "node --import tsx scripts/signin.mjs", depends-on = ["deps"] }
+key-set = { cmd = "node --import tsx scripts/key-set.mjs", depends-on = ["deps"] }
+desktop-dev = { cmd = "node --import tsx scripts/desktop-dev.mjs", depends-on = ["build"] }
+smoke-host = { cmd = "node --import tsx scripts/smoke-host.mjs", depends-on = ["build"] }
+smoke-snapshot = { cmd = "node --import tsx scripts/smoke-host.mjs --snapshot", depends-on = ["build"] }

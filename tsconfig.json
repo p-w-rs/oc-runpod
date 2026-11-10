@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
+  },
+  "include": ["plugin/**/*.ts", "plugin/**/*.tsx", "vite.config.ts"]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "oc-runpod",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "RunPod for OpenCode agents: browser sign-in or API key, every RunPod action, SSH/rsync into pods, per-account permissions with spending prompts and built-in know-how",
+  "exports": {
+    ".": "./plugin/index.ts",
+    "./gui-experimental": "./dist/gui-experimental.cjs"
+  },
+  "files": [
+    "plugin/*.ts",
+    "plugin/*.tsx",
+    "!plugin/*.test.ts",
+    "!plugin/test*.ts",
+    "dist/gui-experimental.cjs",
+    "vendor",
+    "scripts/*.mjs",
+    "docs",
+    "README.md",
+    "pixi.toml",
+    "pixi.lock",
+    "npm-shrinkwrap.json",
+    "tsconfig.json",
+    "vite.config.ts",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test plugin/*.test.ts scripts/*.test.ts",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "jsonc-parser": "3.3.1",
+    "oc-secure-kit": "file:vendor/oc-secure-kit-0.6.0.tgz"
+  },
+  "devDependencies": {
+    "@opencode/plugin": "2.2.6",
+    "@types/node": "24.10.0",
+    "solid-js": "1.9.18",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "8.3.6",
+    "vite-plugin-solid": "2.11.15"
+  }
+}

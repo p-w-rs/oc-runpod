@@ -1,10 +1,18 @@
 {
   "name": "oc-runpod",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
   "description": "RunPod for OpenCode agents: browser sign-in or API key, every RunPod action, SSH/rsync into pods, per-account permissions with spending prompts and built-in know-how",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p-w-rs/oc-runpod.git"
+  },
+  "homepage": "https://github.com/p-w-rs/oc-runpod#readme",
+  "bugs": {
+    "url": "https://github.com/p-w-rs/oc-runpod/issues"
+  },
   "exports": {
     ".": "./plugin/index.ts",
     "./gui-experimental": "./dist/gui-experimental.cjs"
@@ -40,7 +48,7 @@
   },
   "dependencies": {
     "jsonc-parser": "3.3.1",
-    "oc-secure-kit": "file:vendor/oc-secure-kit-0.6.0.tgz"
+    "oc-secure-kit": "file:vendor/oc-secure-kit-1.0.0.tgz"
   },
   "devDependencies": {
     "@opencode/plugin": "2.2.6",

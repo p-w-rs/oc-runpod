@@ -54,14 +54,26 @@ unknown writes ask. Every cell is editable in the GUI (`/runpod`, the
 Review-pane **+** menu, or **Settings → RunPod**); **Allow always** on a prompt
 writes allow. RunPod's own permissions still apply.
 
-## Setup
+## Install
+
+Requires [OpenCode](https://opencode.ai) 2.2.6+ (CLI or Desktop) and [Pixi](https://pixi.sh); macOS or Linux.
 
 ```sh
-pixi run --locked install                        # verified snapshot into your OpenCode config
-pixi run signin personal                         # console on your personal account first
-pixi run signin team --team "My Team"            # console switched to the team first
-pixi run key-set ci                              # or an API key
+git clone https://github.com/p-w-rs/oc-runpod.git && cd oc-runpod
+pixi run --locked install          # runs the tests, then installs a verified snapshot into your OpenCode config
 ```
+
+Restart OpenCode (or `/reload`). Then open **Settings → RunPod** (or `/runpod` in a session) and add an account, or from a terminal: `pixi run signin personal`.
+Agents can also set things up for you when you ask.
+
+```sh
+pixi run --locked install-status   # what is installed, and whether its files are intact
+pixi run --locked rollback         # back to the previous snapshot
+pixi run --locked uninstall        # removes only this plugin's entry; your data stays
+```
+
+Updating: `git pull && pixi run --locked install`. Accounts, sign-ins and permissions live in
+`~/.local/share/oc-runpod` and survive updates; move them between computers with **Export** / **Import** in the view.
 
 ## Development
 

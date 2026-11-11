@@ -153,7 +153,8 @@ export async function startFakeRunpod(options: { sshd?: TestSshd } = {}): Promis
       if (!account) return send(res, 401, { error: "Invalid Authorization header" })
       const data = accounts.get(account)!
       const body = req.method === "GET" || req.method === "DELETE" ? undefined : JSON.parse((await read(req)) || "{}")
-      if (path === "/v2/pods" && req.method === "GET") return send(res, 200, { pods: data.pods.map(view), pagination: { hasNextPage: false, nextCursor: null } })
+      // Like the real API: the list omits the direct SSH address; GET /v2/pods/{id} has it.
+      if (path === "/v2/pods" && req.method === "GET") return send(res, 200, { pods: data.pods.map(pod => { const v = view(pod); return { ...v, ssh: { ...v.ssh, direct: null } } }), pagination: { hasNextPage: false, nextCursor: null } })
       if (path === "/v2/pods" && req.method === "POST") return send(res, 201, view(await createPod(account, body)))
       const one = /^\/v2\/pods\/([^/]+)(\/action)?$/.exec(path)
       const pod = one && data.pods.find(item => item.id === one[1])

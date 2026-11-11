@@ -156,7 +156,11 @@ export class RunpodService {
       if (!data.pagination?.hasNextPage || !data.pagination.nextCursor) break
       cursor = data.pagination.nextCursor
     }
-    return pods
+    // The list leaves ssh.direct and runtime empty; only GET /v2/pods/{id} has the public SSH address.
+    return Promise.all(pods.map(async pod => {
+      if (pod.status !== "RUNNING" || pod.ssh?.direct || !(pod as { ports?: string[] | null }).ports?.includes("22/tcp")) return pod
+      try { return { ...pod, ...await this.rest<PodRecord>(account, "GET", `/v2/pods/${encodeURIComponent(pod.id)}`) } } catch { return pod }
+    }))
   }
 
   /** Account balance and spend limit through the GraphQL API (best effort). */

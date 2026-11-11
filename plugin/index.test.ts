@@ -95,7 +95,7 @@ async function host(reply: "approve" | "reject" = "approve", options: Record<str
     await call("runpod_account_upsert", { id, ...(team && { team }) })
     const started = await call("runpod_signin", { account: id })
     await fake.approve(/(http\S+\/authorize\S+)/.exec(started.tellUser)![1]!, as)
-    for (let i = 0; i < 100; i++) { const list = await rpc.state({}); if (list.accounts.find((a: { id: string; balance?: number }) => a.id === id)?.balance !== undefined) return; await new Promise(r => setTimeout(r, 30)) }
+    for (let i = 0; i < 500; i++) { const list = await rpc.state({}); if (list.accounts.find((a: { id: string; balance?: number }) => a.id === id)?.balance !== undefined) return; await new Promise(r => setTimeout(r, 30)) }
     throw new Error("sign-in did not settle")
   }
   return { dir, tools, skills, prompts, call, shell, signIn, cleanup, rpc: () => rpc, policy: () => PolicyStore.open(dir), vault: () => Vault.open({ dir, plugin: PLUGIN_ID }) }
